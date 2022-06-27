@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
+import Resume from './components/Resume';
 
 function App() {
   const [categories] = useState([ 
@@ -19,6 +20,7 @@ function App() {
 
   const [contactSelected, setContactSelected] = useState(false);
   const [workSelected, setWorkSelected] = useState(false);
+  const [resumeSelected, setResumeSelected] = useState(false);
 
   return (
     <div>
@@ -29,17 +31,21 @@ function App() {
         contactSelected={contactSelected}
         setContactSelected={setContactSelected}
         setWorkSelected={setWorkSelected}
+        setResumeSelected={setResumeSelected}
       ></Nav>
       <main>
         {!contactSelected ? (
           <>
-          {workSelected ? (
+          {!workSelected ? (
+            <>
+            {resumeSelected ? (<Resume></Resume>) : (<About></About>)}
+            </>
+          ) : (
             <>
             <Gallery currentCategory={currentCategory}></Gallery>
             </>
-          ) : (
-            <About></About>
           )}
+          
             
             
           </>
@@ -48,6 +54,9 @@ function App() {
           )}
 
       </main>
+      <footer>
+        Visit Me On: <a href="https://www.github.com/coltschultz">Github</a> • <a href="https://www.linkedin.com/in/colt-schultz-5b8266238">LinkedIn</a> • <a href="https://www.instagram.com/coltlovestacos">Instagram</a>
+      </footer>
     </div>
   );
 }
